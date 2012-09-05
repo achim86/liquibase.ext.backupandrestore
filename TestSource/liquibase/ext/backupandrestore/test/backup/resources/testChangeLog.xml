@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+      xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+      xmlns:br="http://www.liquibase.org/xml/ns/ext/backupandrestore"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+      					  http://www.liquibase.org/xml/ns/ext/backupandrestore dbchangelog-backupandrestore.xsd">
+
+	<changeSet id="backup" author="afinke">
+		<br:backup>
+			<br:table tableName="cyclist" />
+			<br:table tableName="team" />
+			<br:table tableName="manufacturer" />
+		</br:backup>
+	</changeSet>
+	
+	<changeSet id="addColumnHeight" author="afinke">
+		<addColumn tableName="cyclist">
+			<column name="height" type="number(3)" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet id="updateCyclist1" author="afinke">
+		<update tableName="cyclist">
+			<column name="team_id" valueNumeric="4" />
+			<where>id=1</where>
+		</update>
+		<rollback />
+	</changeSet>
+	
+	<changeSet id="country" author="afinke">
+		<createTable tableName="country">
+			<column name="id" type="number(18)" />
+			<column name="name" type="varchar2(30)" />
+		</createTable>
+	</changeSet>
+	
+	<changeSet id="addColumnWeight" author="afinke">
+		<addColumn tableName="cyclist">
+			<column name="weight" type="number(3)" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet id="updateCyclist2" author="afinke">
+		<update tableName="cyclist">
+			<column name="team_id" valueNumeric="4" />
+			<where>id=2</where>
+		</update>
+		<rollback />
+	</changeSet>
+	
+	<changeSet id="dropManufacturer" author="afinke">
+		<dropTable tableName="manufacturer" />
+		<rollback />
+	</changeSet>
+	
+</databaseChangeLog>

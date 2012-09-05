@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+      xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+      xmlns:br="http://www.liquibase.org/xml/ns/ext/backupandrestore"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+      					  http://www.liquibase.org/xml/ns/ext/backupandrestore dbchangelog-backupandrestore.xsd">
+
+	<changeSet id="checkBackups" author="afinke"  runAlways="true">	
+		<preConditions onFail="HALT" onFailMessage="Clean up old backups!">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM user_tables WHERE table_name LIKE 'LIQ_%'</sqlCheck>
+		</preConditions>	
+		<rollback />
+	</changeSet>
+
+	<changeSet id="team" author="afinke">
+		<createTable tableName="team">
+			<column name="id" type="number(18)">
+				<constraints primaryKey="true" primaryKeyName="team_pk" />
+			</column>
+			<column name="name" type="varchar2(30)">
+				<constraints unique="true" uniqueConstraintName="team_name_uq" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="cyclist" author="afinke">
+		<createTable tableName="cyclist">
+			<column name="id" type="number(18)" />
+			<column name="name" type="varchar2(30)" />
+			<column name="team_id" type="number(18)">
+				<constraints references="team(id)" foreignKeyName="cyclist_team_fk" />
+			</column>
+		</createTable>
+	</changeSet>
+	
+	<changeSet id="cyc_id_nn" author="afinke">
+		<sql>ALTER TABLE cyclist MODIFY id CONSTRAINT cyc_id_nn NOT NULL</sql>
+		<rollback />
+	</changeSet>
+	
+	<changeSet id="cyclist_pk" author="afinke">
+		<addPrimaryKey tableName="cyclist" columnNames="id" constraintName="cyclist_pk" />
+	</changeSet>
+	
+	<changeSet id="cyc_name_nn" author="afinke">
+		<sql>ALTER TABLE cyclist MODIFY name CONSTRAINT cyc_name_nn NOT NULL</sql>
+		<rollback />
+	</changeSet>
+
+	<changeSet id="bike" author="afinke">
+		<createTable tableName="bike">
+			<column name="id" type="number(18)">
+				<constraints primaryKey="true" primaryKeyName="bike_pk" />
+			</column>
+			<column name="cyclist_id" type="number(18)">
+				<constraints references="cyclist(id)" foreignKeyName="bike_cyclist_fk" />
+			</column>
+			<!-- you can get this easily using the cyclist but needed for test purposes -->
+			<column name="team_id" type="number(18)">
+				<constraints references="team(id)" foreignKeyName="bike_team_fk" />
+			</column>
+		</createTable>
+	</changeSet>
+	
+	<changeSet id="manufacturer" author="afinke">
+		<createTable tableName="manufacturer">
+			<column name="id" type="number(18)">
+				<constraints primaryKey="true" primaryKeyName="manufacturer_pk" />
+			</column>
+			<column name="name" type="varchar(30)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="insert_teams" author="afinke">
+		<insert tableName="team">
+			<column name="id" valueNumeric="1" />
+			<column name="name" value="Telekom" />
+		</insert>
+		<insert tableName="team">
+			<column name="id" valueNumeric="2" />
+			<column name="name" value="Sky" />
+		</insert>
+		<insert tableName="team">
+			<column name="id" valueNumeric="3" />
+			<column name="name" value="Liquigas" />
+		</insert>
+		<insert tableName="team">
+			<column name="id" valueNumeric="4" />
+			<column name="name" value="Alpecin" />
+		</insert>
+		<rollback />
+	</changeSet> 
+
+	<changeSet id="insert_cyclists" author="afinke">
+		<insert tableName="cyclist">
+			<column name="id" valueNumeric="1" />
+			<column name="name" value="Jan Ullrich" />
+			<column name="team_id" valueNumeric="1" />
+		</insert>
+		<insert tableName="cyclist">
+			<column name="id" valueNumeric="2" />
+			<column name="name" value="Bradley Wiggins" />
+			<column name="team_id" valueNumeric="2" />
+		</insert>
+		<insert tableName="cyclist">
+			<column name="id" valueNumeric="3" />
+			<column name="name" value="Vincenco Nibali" />
+			<column name="team_id" valueNumeric="3" />
+		</insert>
+		<rollback />
+	</changeSet> 
+	
+	<changeSet id="insert_bikes" author="afinke">
+		<insert tableName="bike">
+			<column name="id" valueNumeric="1" />
+			<column name="cyclist_id" valueNumeric="1" />
+		</insert>
+		<insert tableName="bike">
+			<column name="id" valueNumeric="2" />
+			<column name="cyclist_id" valueNumeric="2" />
+		</insert>
+		<insert tableName="bike">
+			<column name="id" valueNumeric="3" />
+			<column name="cyclist_id" valueNumeric="3" />
+		</insert>
+		<rollback />
+	</changeSet> 
+	
+	<changeSet id="insert_manufacturers" author="afinke">
+		<insert tableName="manufacturer">
+			<column name="id" valueNumeric="1" />
+			<column name="name" value="BMC" />
+		</insert>
+		<insert tableName="manufacturer">
+			<column name="id" valueNumeric="2" />
+			<column name="name" value="Cannondale" />
+		</insert>
+		<insert tableName="manufacturer">
+			<column name="id" valueNumeric="3" />
+			<column name="name" value="Scott" />
+		</insert>
+		<rollback />
+	</changeSet> 
+	
+</databaseChangeLog>

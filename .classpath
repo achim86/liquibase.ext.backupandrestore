@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="JavaSource"/>
+	<classpathentry kind="src" path="TestSource"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="lib_additional/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib_additional/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="lib_additional/liquibase-core-2.0.5.jar" sourcepath="lib_src/liquibase-core-2.0.5-sources.jar"/>
+	<classpathentry kind="lib" path="lib_additional/LiquibaseLog4jLogger.jar"/>
+	<classpathentry kind="lib" path="lib_additional/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="lib_additional/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="lib_additional/org.springframework.asm-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib_additional/org.springframework.beans-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib_additional/org.springframework.context-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib_additional/org.springframework.core-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib_additional/org.springframework.expression-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib_additional/org.springframework.jdbc-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib_additional/org.springframework.test-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib_additional/org.springframework.transaction-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib_additional/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

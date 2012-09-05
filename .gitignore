@@ -1,0 +1,5 @@
+bin
+build
+dist
+.metadata
+lib_additional/ojdbc*.jar

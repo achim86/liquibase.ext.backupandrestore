@@ -1,0 +1,24 @@
+<?xml version="1.0" ?> 
+<project name="Liquibase Backup And Restore" default="compress">
+
+	<path id="build.classpath">
+	  <fileset dir="lib_additional">
+	    <include name="liquibase-core-2.0.5.jar"/>
+	  	<include name="ojdbc6.jar"/>
+	  </fileset>
+	</path>
+	
+	<target name="init">
+		<mkdir dir="build/classes" />
+		<mkdir dir="dist" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="JavaSource" destdir="build/classes" classpathref="build.classpath" />
+	</target>
+	
+	<target name="compress" depends="compile">
+	  	<jar destfile="dist/liquibase-backup-and-restore-1.0.jar" basedir="build/classes" />
+	</target>
+		
+</project>
