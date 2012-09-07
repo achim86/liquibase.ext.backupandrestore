@@ -174,7 +174,7 @@ public class BackupRestoreOracleTest {
 			// check primary key
 			String cyclistPK = (String) jdbcTemplate.queryForObject(
 					"SELECT constraint_name FROM all_constraints " +
-					"WHERE constraint_type = 'P' AND owner = 'TEST' AND table_name = 'CYCLIST'", 
+					"WHERE constraint_type = 'P' AND owner = '" + user.toUpperCase() + "' AND table_name = 'CYCLIST'", 
 					new RowMapper<String>() {
 						@Override
 						public String mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -186,7 +186,7 @@ public class BackupRestoreOracleTest {
 			// check foreign keys
 			String cyclistFK = jdbcTemplate.queryForObject(
 					"SELECT constraint_name FROM all_constraints " +
-					"WHERE constraint_type = 'R' AND owner = 'TEST' AND table_name = 'CYCLIST'", 
+					"WHERE constraint_type = 'R' AND owner = '" + user.toUpperCase() + "' AND table_name = 'CYCLIST'", 
 				    new RowMapper<String>() {
 						@Override
 						public String mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -196,7 +196,7 @@ public class BackupRestoreOracleTest {
 			Assert.assertEquals("CYCLIST_TEAM_FK", cyclistFK);
 			List<String> bikeFKs = jdbcTemplate.query(
 					"SELECT constraint_name FROM all_constraints " +
-					"WHERE constraint_type = 'R' AND owner = 'TEST' AND table_name = 'BIKE'", 
+					"WHERE constraint_type = 'R' AND owner = '" + user.toUpperCase() + "' AND table_name = 'BIKE'", 
 				    new RowMapper<String>() {
 						@Override
 						public String mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -209,7 +209,7 @@ public class BackupRestoreOracleTest {
 			// check not null constraints
 			List<String> cyclistNN = jdbcTemplate.query(
 					"SELECT constraint_name FROM all_constraints " +
-					"WHERE constraint_type = 'C' AND owner = 'TEST' AND table_name = 'CYCLIST'" +
+					"WHERE constraint_type = 'C' AND owner = '" + user.toUpperCase() + "' AND table_name = 'CYCLIST'" +
 					"ORDER BY constraint_name", 
 				    new RowMapper<String>() {
 						@Override
