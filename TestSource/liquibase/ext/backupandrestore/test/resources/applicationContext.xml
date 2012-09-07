@@ -18,7 +18,7 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 	        destroy-method="close">
 	        <property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
-	        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
+	        <property name="jdbcUrl" value="${url}" />
 	        <property name="user" value="${user}" />
 	        <property name="password" value="${password}" />
 	</bean>
@@ -26,7 +26,7 @@
 	<bean id="dataSource2" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 	        destroy-method="close">
 	        <property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
-	        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
+	        <property name="jdbcUrl" value="${url2}" />
 	        <property name="user" value="${user2}" />
 	        <property name="password" value="${password2}" />
 	</bean>
