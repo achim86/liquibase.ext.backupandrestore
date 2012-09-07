@@ -13,10 +13,10 @@ Add liquibase-backup-and-restore-x.x.jar to your classpath.
 ![fileurls](http://img29.imageshack.us/img29/5824/namespace.png)
 
 # Running from your IDE
-Due to licensing you have to add [[http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html][ojdbc*.jar]] to lib_additional folder and add it to your classpath first.
+Due to licensing you have to add [ojdbc*.jar](http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html) to lib_additional folder and add it to your classpath first.
 
 # Contribute
-Currently there is only oracle support. If you are using other dbms feel free to add support. There is an [[https://github.com/achim86/liquibase.ext.backupandrestore/blob/master/liquibase.ext.backupandrestore/JavaSource/liquibase/ext/backupandrestore/BackupRestore.java][interface]] 
+Currently there is only oracle support. If you are using other dbms feel free to add support. There is an [interface](https://github.com/achim86/liquibase.ext.backupandrestore/blob/master/liquibase.ext.backupandrestore/JavaSource/liquibase/ext/backupandrestore/BackupRestore.java) 
 which you can implement for your specific DBMS.
 
 # Running Tests
