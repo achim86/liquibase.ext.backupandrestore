@@ -51,7 +51,7 @@ public class LiquibaseTestUtil {
 				"SELECT table_name " +
 				"FROM all_tables " +
 				"WHERE owner = ?",
-				new Object[] { user }, new RowMapper<String>() {
+				new Object[] { user.toUpperCase() }, new RowMapper<String>() {
 					@Override
 					public String mapRow(ResultSet resultSet, int i) throws SQLException {
 						return resultSet.getString(1);
@@ -69,7 +69,7 @@ public class LiquibaseTestUtil {
 				"SELECT view_name " +
 				"FROM all_views " +
 				"WHERE owner = ?",
-				new Object[] { user }, new RowMapper<String>() {
+				new Object[] { user.toUpperCase() }, new RowMapper<String>() {
 					@Override
 					public String mapRow(ResultSet resultSet, int i) throws SQLException {
 						return resultSet.getString(1);
@@ -86,7 +86,7 @@ public class LiquibaseTestUtil {
 				"SELECT trigger_name " +
 				"FROM all_triggers " +
 				"WHERE owner = ?",
-				new Object[] { user }, new RowMapper<String>() {
+				new Object[] { user.toUpperCase() }, new RowMapper<String>() {
 					@Override
 					public String mapRow(ResultSet resultSet, int i) throws SQLException {
 						return resultSet.getString(1);
@@ -103,7 +103,7 @@ public class LiquibaseTestUtil {
 				.query("SELECT sequence_name " +
 						"FROM  all_sequences " +
 						"WHERE sequence_owner = ?",
-						new Object[] { user }, new RowMapper<String>() {
+						new Object[] { user.toUpperCase() }, new RowMapper<String>() {
 							@Override
 							public String mapRow(ResultSet resultSet, int i) throws SQLException {
 								return resultSet.getString(1);
@@ -120,7 +120,7 @@ public class LiquibaseTestUtil {
 				"SELECT type_name " +
 				"FROM  all_types " +
 				"WHERE owner = ?",
-				new Object[] { user }, new RowMapper<String>() {
+				new Object[] { user.toUpperCase() }, new RowMapper<String>() {
 					@Override
 					public String mapRow(ResultSet resultSet, int i) throws SQLException {
 						return resultSet.getString(1);
