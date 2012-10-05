@@ -33,7 +33,8 @@ public interface BackupRestore {
 													Database database);
 	
 	/**
-	 * Backups the table to backup in a copy named after the given name.
+	 * Builds a SQL statement to backup the table to backup in a copy 
+	 * named after the given name.
 	 * 
 	 * @paramschemaName the table schema, null if default schema
 	 * @param backupTableName the backup table name
@@ -46,7 +47,8 @@ public interface BackupRestore {
 								  Database database);
 	
 	/**
-	 * Drops the modified table to restore a clean backup.
+	 * Builds a SQL statement to drop the modified table to restore
+	 * a clean backup.
 	 * 
 	 * @param schemaName the table schema, null if default schema
 	 * @param tableName the table name
@@ -58,7 +60,7 @@ public interface BackupRestore {
 								    Database database);
 	
 	/**
-	 * Table DDL of the given table from DATABASERESTORETABLELOG'.
+	 * Delivers the table DDL of the given table from DATABASERESTORETABLELOG'.
 	 * 
 	 * @param tableName the table name
 	 * @param database the database
@@ -67,7 +69,7 @@ public interface BackupRestore {
 	public String restoreTableStructure(String tableName, Database database);
 	
 	/**
-	 * Insert for backuped data.
+	 * Builds a SQL-Statement to insert the backuped data into the restored table.
 	 * 
 	 * @param schemaName the table schema, null if default schema
 	 * @param tableName the table name
@@ -81,7 +83,7 @@ public interface BackupRestore {
 								   Database database);
 
 	/**
-	 * Referential(s) DDL of the given table from DATABASERESTORETABLELOG'.
+	 * Delivers referential(s) DDL of the given table from DATABASERESTORETABLELOG'.
 	 * 
 	 * @param tableName the table name
 	 * @param database the database
@@ -90,7 +92,7 @@ public interface BackupRestore {
 	public List<String> restoreReferentials(String tableName, Database database);
 
 	/**
-	 * Delete the record for the given table name from 'DATABASERESTORETABLELOG'.
+	 * Deletes the record for the given table name from 'DATABASERESTORETABLELOG'.
 	 * 
 	 * @param tableName the table name
 	 * @param database the database
